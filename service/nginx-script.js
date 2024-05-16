@@ -43,6 +43,8 @@ async function extract(readStream, temPath) {
             }
           }
           entry.pipe(fs.createWriteStream(path.resolve(temPath, fileName)));
+        }else{
+          entry.autodrain();
         }
       })
       .on("end", () => {

@@ -21,28 +21,29 @@ async function main() {
     // if some legacy zip tool follow ZIP spec then this flag will be set
     const isUnicode = entry.props.flags.isUnicode;
     // decode "non-unicode" filename from OEM Cyrillic character set
-    const fileName = isUnicode ? entry.path : il.decode(entry.props.pathBuffer, 'gbk');
-    const type = entry.type; // 'Directory' or 'File'
-    const size = entry.vars.uncompressedSize; // There is also compressedSize;
-    if (type === 'File') {
-      let path = '';
-      let list = fileName.split('/');
-      list.pop();
-      for(let item of list){
-        if(path){
-          path += ('/' + item);
-        }else{
-          path = item;
-        }
+    console.log(entry.path);
+    // const fileName = isUnicode ? entry.path : il.decode(entry.props.pathBuffer, 'gbk');
+    // const type = entry.type; // 'Directory' or 'File'
+    // const size = entry.vars.uncompressedSize; // There is also compressedSize;
+    // if (type === 'File') {
+    //   let path = '';
+    //   let list = fileName.split('/');
+    //   list.pop();
+    //   for(let item of list){
+    //     if(path){
+    //       path += ('/' + item);
+    //     }else{
+    //       path = item;
+    //     }
         
-        try{
-          fs.mkdirSync(path)
-        }catch(e){
-          // console.log(e)
-        }
-      }
-      entry.pipe(fs.createWriteStream(fileName));
-    }
+    //     try{
+    //       fs.mkdirSync(path)
+    //     }catch(e){
+    //       // console.log(e)
+    //     }
+    //   }
+    //   entry.pipe(fs.createWriteStream(fileName));
+    // }
   })
 //   readStream.pipe(unzipper.Parse())
 //   .on('entry', function (entry) {

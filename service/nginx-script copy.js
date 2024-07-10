@@ -137,8 +137,12 @@ function hanlderFile(filePath, suff, resolve) {
 }
 function putNginxConfig(filePath, fileName) {
   return new Promise((resolve, reject) => {
-    let arr = fileName.split(".");
-    hanlderFile(filePath, arr[arr.length - 1], resolve);
+    if (fileName.indexOf(".zip") !== -1) {
+      hanlderZip(filePath, resolve);
+    } else {
+      let arr = fileName.split(".");
+      hanlderFile(filePath, arr[arr.length - 1], resolve);
+    }
   });
 }
 module.exports = {

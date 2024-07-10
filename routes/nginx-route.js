@@ -7,9 +7,9 @@ let path = require('path');
 let util = require('../service/util');
 let _ = require('lodash');
 let { getNginxConfig, putNginxConfig } = require('../service/nginx-script.js');
-
+let log = require('../service/log')
 route.post('/', async (req, res) =>{
-  console.log(req.ip);
+  let ip = req.ip;
   const form = formidable({ multiples: true });
   function showError(msg){
     console.error(msg);
@@ -46,7 +46,7 @@ route.post('/', async (req, res) =>{
     // }
 
     await putNginxConfig(files.file.path, fileName).then((data)=>{
-      console.log(data);
+      log(ip + ': ' + data);
       util.endRequest(res, {
         code: 200,
         data: data,

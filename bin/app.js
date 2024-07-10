@@ -1,14 +1,16 @@
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 const url = require('url');
 const proxy = require('http-proxy-middleware');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var compression = require('compression');
 let nginxRoute = require('../routes/nginx-route');
+let log = require('../service/log')
 const app = express();
+
 try{
   fs.mkdirSync(path.resolve(__dirname, '../tem'));
 }catch (e){
@@ -16,7 +18,7 @@ try{
 }
 app.use(function (req, res, next) {
   if(req.path === '/'){
-    console.log(req.ip);
+    log(req.ip);
   }
   next();
 });

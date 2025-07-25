@@ -138,12 +138,7 @@ function hanlderFile(filePath, fileName, resolve) {
 function putNginxConfig(filePath, fileName) {
   return new Promise((resolve, reject) => {
     let arr = fileName.split(".");
-    if(arr[arr.length - 1] === 'zip'){
-      hanlderZip(filePath, resolve)
-    }else{
-      hanlderFile(filePath, fileName, resolve);
-    }
-   
+    hanlderFile(filePath, fileName, resolve);
   });
 }
 module.exports = {

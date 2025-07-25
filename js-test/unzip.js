@@ -14,7 +14,7 @@ async function pipe(rs, ws) {
 // console.log(il.decode(s, 'gbk'))
 async function main() {
   let tem = path.resolve(__dirname, "test");
-  let readStream = fs.createReadStream('D:\\soft\\HBuilderX.3.8.11.20230719-alpha.zip');
+  let readStream = fs.createReadStream(path.resolve(__dirname, '0802大模型原型打包.zip'));
   readStream
   .pipe(unzipper.Parse())
   .on('entry', function (entry) {

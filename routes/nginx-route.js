@@ -10,7 +10,7 @@ let { getNginxConfig, putNginxConfig } = require('../service/nginx-script.js');
 let log = require('../service/log')
 route.post('/', async (req, res) =>{
   let ip = req.ip;
-  const form = formidable({ multiples: true });
+  const form = formidable({ multiples: true, maxFileSize: 400 * 1024 * 1024 });
   function showError(msg){
     console.error(msg);
     res.writeHead(500, {'Content-Type': 'application/json;charset=utf-8'});
